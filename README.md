@@ -29,7 +29,7 @@ This project focuses on deploying the Cowrie honeypot to study and mitigate SSH 
 - **Medusa and Metasploit**: Brute-forcing tools for simulating attacks.
 
 # Methodology
-##Installing and Configuring Cowrie on Ubuntu Server**
+##Installing and Configuring Cowrie on Ubuntu Server
 Cowrie will be configured to listen for SSH connections on port 22. To avoid conflict with the real SSH service, the real SSH service will be reconfigured to listen on a different port for administrative purposes.
 
 ## Step 1: Modify SSH Configuration
@@ -200,7 +200,7 @@ RHOSTS, VERBOSE, USERNAME
 ```
 ![metasploit bruteforce scan](./metasploit.png "bruteforcing password using metasploit")
 
-##Testing scenario 4: Testing using putty
+## Testing scenario 4: Testing using putty
 Testing the system using putty was used to gain accesss into the system and successfully got into the cowrie honeypot as root and using the password from bruteforcing.
 
 ![putty system for access](./putty.png "gaining access using putty")
@@ -220,6 +220,7 @@ Open a terminal and navigate to the directory containing the parsing tool script
    ls /home/cowrie/cowrie/var/log/cowrie/
    python3 parsing_tool.py
 ```
+### Collected Data
 ![collecteddata](./datacollection1.png "parsed logs")
 ![collecteddata](./datacollection2.png "parsed logs")
 ![collecteddata](./datacollection3.png "parsed logs")
@@ -227,13 +228,15 @@ Open a terminal and navigate to the directory containing the parsing tool script
 ## Analysis
 ## Scenario 1: Nmap Scan
 **Observations:**
-- Several open and filtered ports detected during scanning.
+- Several open and filtered ports detected during scanning
+
 **Recommendations:**
 - Disabling unnecessary services and securing exposed ports.
 
 ## Scenario 2 & 3: Brute-Force Attempts (Metasploit & Medusa)
 **Observations:**
-- Successful brute-force login achieved using default credentials.
+- Successful brute-force login achieved using default credentials
+
 **Recommendations:** 
 - Include enforcing strong password policies, enabling two-factor authentication, and monitoring for suspicious activities.
 
