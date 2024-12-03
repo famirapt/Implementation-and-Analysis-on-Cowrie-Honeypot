@@ -16,21 +16,21 @@ This project focuses on deploying the Cowrie honeypot to study and mitigate SSH 
 - Logs attacker interactions, including login attempts, executed commands, and file transfers.
 - Provides JSON-formatted logs for detailed analysis.
 
-### Tools and Technologies Used
-#### Hardware
+## Tools and Technologies Used
+### Hardware
 - **Lenovo T460s Laptop**: Used for hosting virtual environments.
 - **VirtualBox**: Virtualization platform for running isolated Ubuntu Server and Kali Linux environments.
 
-#### Software
+### Software
 - **Ubuntu Server 22.04 LTS**: Hosting platform for Cowrie honeypot.
 - **Kali Linux 2024**: Used for penetration testing and launching attacks.
 - **Putty**: Terminal emulator for testing SSH access.
 - **Nmap**: Network scanning tool to detect open ports and services.
 - **Medusa and Metasploit**: Brute-forcing tools for simulating attacks.
 
-### Methodology
-1. **Installing and Configuring Cowrie on Ubuntu Server**
-   - Cowrie will be configured to listen for SSH connections on port 22. To avoid conflict with the real SSH service, the real SSH service will be reconfigured to listen on a different port for administrative purposes.
+# Methodology
+##Installing and Configuring Cowrie on Ubuntu Server**
+Cowrie will be configured to listen for SSH connections on port 22. To avoid conflict with the real SSH service, the real SSH service will be reconfigured to listen on a different port for administrative purposes.
 
 ## Step 1: Modify SSH Configuration
 
@@ -174,63 +174,72 @@ This project focuses on deploying the Cowrie honeypot to study and mitigate SSH 
     - `cowrie/share/cowrie/txtcmds/usr/sbin`: Contains system administration utilities.
 
 3. Ensure all configurations make the honeypot appear realistic to attackers.
-
----
 This concludes the installation and configuration of Cowrie on an Ubuntu server. The honeypot is now ready to capture attacker interactions and provide valuable insights for security analysis.
 
 
 
-2. **System Testing**
-   - Testing scenario 1: Nmap Scanning
-   Nmap is one of the tools that can be used in port scanning. nmap was use to run a port scan on the system, I used following command to scan the system on kali-linux “nmap ip-addr"
-   ![Nmap Scan](./nmap.png "Nmap scan for open ports")
+## System Testing
+## Testing scenario 1: Nmap Scanning
+Nmap is one of the tools that can be used in port scanning. nmap was use to run a port scan on the system, I used following command to scan the system on kali-linux.
+```bash
+Nmap (ipaddr)
+```
+![Nmap Scan](./nmap.png "Nmap scan for open ports")
 
-   - Testing scenario 2: Brute-force attack in Medusa
-   In second phase, bruteforce attack was selected which is a hacking method that uses trial and error to crack passwords, login credentials and encryption keys. For this attack, a tool named medusa, which comes built-in in Kali Linux OS. Medusa works by using different approaches to perform brute force attacks in order to guess the right combination. Pen Testers commonly use it so that the weak links can be resolved. the following command was used to launch the attack “medusa -u root -p pass.txt -h ip-addr"
-   ![Medusa bruteforce scan](./medusa.png "bruteforcing password using medusa")
+## Testing scenario 2: Brute-force attack in Medusa
+In second phase, bruteforce attack was selected which is a hacking method that uses trial and error to crack passwords, login credentials and encryption keys. For this attack, a tool named medusa, which comes built-in in Kali Linux OS.The following command was used to launch the attack 
+```bash
+medusa -u root -p pass.txt -h ip-addr
+```
+![Medusa bruteforce scan](./medusa.png "bruteforcing password using medusa")
  
-   - Testing scenario 3: Brute-force attack in Metasploit
-   Also the attack was preform on metasploit , which comes built-in in Kali Linux OS. metasploit works by using different approaches to perform brute force attacks in order to guess the right combination. Pen Testers commonly use it so that the weak links can be resolved. the following command was used to launch the attack, setting the RHOSTS, PASS, VERBOSE, USERNAME.
-   ![metasploit bruteforce scan](./metasploit.png "bruteforcing password using metasploit)
-   - Testing scenario 4: Testing using putty
-   Testing the system using putty was used to gain accesss into the system and successfully got into the cowrie honeypot as root and using the password from bruteforcing.
-   ![putty system for access](./putty.png "gaining access using putty")
+## Testing scenario 3: Brute-force attack in Metasploit
+Also the attack was preform on metasploit , which comes built-in in Kali Linux OS. mess the right combination.The following command was used to launch the attack.
+```bash
+RHOSTS, VERBOSE, USERNAME
+```
+![metasploit bruteforce scan](./metasploit.png "bruteforcing password using metasploit)
 
-3. **Data Collection and Analysis**
-   - Developed a Python-based parsing tool to process Cowrie logs.
-   - The log directory used by the parsing tool is:
-   `/home/cowrie/cowrie/var/log/cowrie/`
+##Testing scenario 4: Testing using putty
+Testing the system using putty was used to gain accesss into the system and successfully got into the cowrie honeypot as root and using the password from bruteforcing.
+![putty system for access](./putty.png "gaining access using putty")
 
-### Usage
-To use the parsing tool, follow these steps:
-1. **Navigate to the Tool's Location:**
-   Open a terminal and navigate to the directory containing the parsing tool script.
-   ```bash
+## Data Collection and Analysis
+Developed a Python-based parsing tool to process Cowrie logs.
+The log directory used by the parsing tool is:
+```bash
+`/home/cowrie/cowrie/var/log/cowrie/`
+```
+## Usage
+Open a terminal and navigate to the directory containing the parsing tool script.
+```bash
    cd /home/cowrie/cowrie/parsinglog.py/
    ls /home/cowrie/cowrie/var/log/cowrie/
    python3 parsing_tool.py
-  
-  ![collecteddata](./datacollection1.png "parsed logs")
-  ![collecteddata](./datacollection2.png "parsed logs")
-  ![collecteddata](./datacollection3.png "parsed logs")
+```
+![collecteddata](./datacollection1.png "parsed logs")
+![collecteddata](./datacollection2.png "parsed logs")
+![collecteddata](./datacollection3.png "parsed logs")
 
-### Analysis
-#### Scenario 1: Nmap Scan
+## Analysis
+## Scenario 1: Nmap Scan
 **Observations:**
 - Several open and filtered ports detected during scanning.
-- Recommendations include disabling unnecessary services and securing exposed ports.
+**Recommendations**
+- Disabling unnecessary services and securing exposed ports.
 
-#### Scenario 2 & 3: Brute-Force Attempts (Metasploit & Medusa)
+## Scenario 2 & 3: Brute-Force Attempts (Metasploit & Medusa)
 **Observations:**
 - Successful brute-force login achieved using default credentials.
-- Recommendations include enforcing strong password policies, enabling two-factor authentication, and monitoring for suspicious activities.
+**Recommendations** 
+- Include enforcing strong password policies, enabling two-factor authentication, and monitoring for suspicious activities.
 
-#### Scenario 4: System Access (Putty)
+## Scenario 4: System Access (Putty)
 **Observations:**
 - Multiple commands were executed by attackers post-login.
 - Activities included directory traversal, file operations, and network configuration checks.
 
-### Challenges
+## Challenges
 - Difficulty in Installing GUI for Ubuntu Server.
 - Challenges in developing log analysis tools.
 
@@ -259,9 +268,9 @@ To use the parsing tool, follow these steps:
 ```
 
 ## Author
-**Abdulkarim Rahmatu**
-  - Cybersecurity Analyst
-  - Email:famirapt@gmail.com
+- Abdulkarim Rahmatu
+- Cybersecurity Analyst
+- Email:famirapt@gmail.com
 
 ---
 For more information or to contribute, feel free to reach out or create a pull request in this repository!
