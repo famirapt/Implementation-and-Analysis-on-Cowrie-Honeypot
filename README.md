@@ -198,14 +198,17 @@ Also the attack was preform on metasploit , which comes built-in in Kali Linux O
 ```bash
 RHOSTS, VERBOSE, USERNAME
 ```
-![metasploit bruteforce scan](./metasploit.png "bruteforcing password using metasploit)
+![metasploit bruteforce scan](./metasploit.png "bruteforcing password using metasploit")
 
 ##Testing scenario 4: Testing using putty
 Testing the system using putty was used to gain accesss into the system and successfully got into the cowrie honeypot as root and using the password from bruteforcing.
+
 ![putty system for access](./putty.png "gaining access using putty")
 
 ## Data Collection and Analysis
 Developed a Python-based parsing tool to process Cowrie logs.
+![parsing log file](./parselog-tool.py "parsedlogtool")
+
 The log directory used by the parsing tool is:
 ```bash
 `/home/cowrie/cowrie/var/log/cowrie/`
@@ -225,13 +228,13 @@ Open a terminal and navigate to the directory containing the parsing tool script
 ## Scenario 1: Nmap Scan
 **Observations:**
 - Several open and filtered ports detected during scanning.
-**Recommendations**
+**Recommendations:**
 - Disabling unnecessary services and securing exposed ports.
 
 ## Scenario 2 & 3: Brute-Force Attempts (Metasploit & Medusa)
 **Observations:**
 - Successful brute-force login achieved using default credentials.
-**Recommendations** 
+**Recommendations:** 
 - Include enforcing strong password policies, enabling two-factor authentication, and monitoring for suspicious activities.
 
 ## Scenario 4: System Access (Putty)
