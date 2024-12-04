@@ -29,7 +29,7 @@ This project focuses on deploying the Cowrie honeypot to study and mitigate SSH 
 - **Medusa and Metasploit**: Brute-forcing tools for simulating attacks.
 
 # Methodology
-##Installing and Configuring Cowrie on Ubuntu Server
+## Installing and Configuring Cowrie on Ubuntu Server
 Cowrie will be configured to listen for SSH connections on port 22. To avoid conflict with the real SSH service, the real SSH service will be reconfigured to listen on a different port for administrative purposes.
 
 ## Step 1: Modify SSH Configuration
@@ -274,8 +274,8 @@ Open a terminal and navigate to the directory containing the parsing tool script
 ```
 
 ## Author
-- Abdulkarim Rahmatu
-- Cybersecurity Analyst
+- Rahma Yaqeen
+- LinkedIn: https://linkedin.com/in/fameera-yakeen
 - Email:famirapt@gmail.com
 
 ---
